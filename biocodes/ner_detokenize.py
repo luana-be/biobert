@@ -19,7 +19,7 @@ def detokenize(golden_path, pred_token_test_path, pred_label_test_path, output_d
         output_dir: path to output result will write on. ex) output/
         
     Outs:
-        NER_result_conll.txt
+        NER_result_conll.txt, NER_result_conll_nolabels.tsv
     """
     # read golden
     ans = dict()
@@ -84,5 +84,18 @@ def detokenize(golden_path, pred_token_test_path, pred_label_test_path, output_d
             else :
                 out_.write("%s %s-MISC %s-MISC\n"%(bert_pred['toks'][idx], ans['labels'][idx], bert_pred['labels'][idx]))
                 idx+=1
-
+   
+    #added by luana since we just need to write the predicted labels
+    with open(output_dir+'/NER_result_conll_nolabels.tsv', 'w') as out_:   
+        for idx, (bpred_t, bpred_l) in enumerate(zip(bert_pred['toks'], bert_pred['labels'])):
+            if bpred_t=='[SEP]':             
+                out_.write("\n")
+            elif bpred_t=='[CLS]': 
+            	pass
+            else:
+                try:
+                    out_.write("%s\t%s\n"%(bpred_t, bpred_l))
+                except:
+                    print("Error when writing to NER_result_conll_nolabels.tsv")    
+                     
 detokenize(args.answer_path, args.token_test_path, args.label_test_path, args.output_dir)

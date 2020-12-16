@@ -195,7 +195,9 @@ class NerProcessor(DataProcessor):
 
 
     def get_labels(self):
-        return ["B", "I", "O", "X", "[CLS]", "[SEP]"] 
+        #return ["B", "I", "O", "X", "[CLS]", "[SEP]"] 
+        #covsight project: possible labels
+        return ["[PAD]", "B", "I", "O", "X", "B-Amino_acid", "B-Anatomical_system", "B-Anatomy", "B-Cancer", "B-Cell", "B-cell_line", "B-cell_type", "B-Cellular_component", "B-Chemical", "B-Developing_anatomical_structure", "B-Disease", "B-DNA", "B-Gene_or_gene_product", "B-Immaterial_anatomical_entity", "B-Multi-tissue_structure", "B-Organ", "B-Organism", "B-Organism_subdivision", "B-Organism_substance", "B-Pathological_formation", "B-protein", "B-RNA", "B-Simple_chemical", "B-Tissue", "I-Amino_acid", "I-Anatomical_system", "I-Anatomy", "I-Cancer", "I-Cell", "I-cell_line", "I-cell_type", "I-Cellular_component", "I-Chemical", "I-Developing_anatomical_structure", "I-Disease", "I-DNA", "I-Gene_or_gene_product", "I-Immaterial_anatomical_entity", "I-Multi-tissue_structure", "I-Organ", "I-Organism", "I-Organism_subdivision", "I-Organism_substance", "I-Pathological_formation", "I-protein", "I-RNA", "I-Simple_chemical", "I-Tissue", "B-CHEBI", "B-CL", "B-GGP", "B-GO", "B-SO", "B-Taxon", "I-CHEBI", "I-CL", "I-GGP", "I-GO", "I-SO", "I-Taxon", "[CLS]", "[SEP]"] 
 
     def _create_example(self, lines, set_type):
         examples = []
